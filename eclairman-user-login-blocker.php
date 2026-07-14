@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Plugin Name:       Simple User Login Blocker
- * Plugin URI:        https://wordpress.org/plugins/simple-user-login-blocker/
- * Description:        Disable login for selected users. Manage the blocked users from the "Simple User Login Blocker" admin screen.
+ * Plugin Name:       Eclairman's User Login Blocker
+ * Plugin URI:        https://wordpress.org/plugins/eclairman-user-login-blocker/
+ * Description:       Block login for selected users. Manage the blocked users from the "Eclairman's User Login Blocker" admin screen.
  * Version:           3.0.0
  * Requires at least: 5.6
  * Requires PHP:      7.2
@@ -11,9 +11,9 @@
  * Author URI:        https://profiles.wordpress.org/eclairman/
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       simple-user-login-blocker
+ * Text Domain:       eclairman-user-login-blocker
  *
- * @package SimpleUserLoginBlocker
+ * @package EclairmanUserLoginBlocker
  */
 
 defined('ABSPATH') || exit;
@@ -54,7 +54,7 @@ function dnal_block_user_login($user, $username, $password)
 	if (in_array((int) $user->ID, dnal_get_blocked_ids(), true)) {
 		return new WP_Error(
 			'dnal_user_login_blocked',
-			__('Login is currently disabled for this account.', 'simple-user-login-blocker')
+			__('Login is currently disabled for this account.', 'eclairman-user-login-blocker')
 		);
 	}
 
@@ -101,10 +101,10 @@ function dnal_menu_icon()
 function dnal_register_settings_page()
 {
 	add_menu_page(
-		__('Blocked Users', 'simple-user-login-blocker'),
-		__('Blocked Users', 'simple-user-login-blocker'),
+		__('Blocked Users', 'eclairman-user-login-blocker'),
+		__('Blocked Users', 'eclairman-user-login-blocker'),
 		'manage_options',
-		'simple-user-login-blocker',
+		'eclairman-user-login-blocker',
 		'dnal_render_settings_page',
 		dnal_menu_icon(),
 		70
@@ -119,7 +119,7 @@ add_action('admin_menu', 'dnal_register_settings_page');
  */
 function dnal_enqueue_admin_assets($hook)
 {
-	if ('toplevel_page_simple-user-login-blocker' !== $hook) {
+	if ('toplevel_page_eclairman-user-login-blocker' !== $hook) {
 		return;
 	}
 
@@ -150,8 +150,8 @@ function dnal_plugin_action_links($links)
 {
 	$settings_link = sprintf(
 		'<a href="%s">%s</a>',
-		esc_url(admin_url('admin.php?page=simple-user-login-blocker')),
-		esc_html__('Settings', 'simple-user-login-blocker')
+		esc_url(admin_url('admin.php?page=eclairman-user-login-blocker')),
+		esc_html__('Settings', 'eclairman-user-login-blocker')
 	);
 
 	array_unshift($links, $settings_link);
@@ -166,7 +166,7 @@ add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'dnal_plugin_acti
 function dnal_render_settings_page()
 {
 	if (! current_user_can('manage_options')) {
-		wp_die(esc_html__('You do not have permission to access this page.', 'simple-user-login-blocker'));
+		wp_die(esc_html__('You do not have permission to access this page.', 'eclairman-user-login-blocker'));
 	}
 
 	$notice = '';
@@ -178,7 +178,7 @@ function dnal_render_settings_page()
 		$blocked   = array_values(array_unique($submitted));
 
 		update_option(DNAL_OPTION_KEY, $blocked);
-		$notice = __('Login restrictions updated.', 'simple-user-login-blocker');
+		$notice = __('Login restrictions updated.', 'eclairman-user-login-blocker');
 	}
 
 	$blocked_ids = dnal_get_blocked_ids();
@@ -199,8 +199,8 @@ function dnal_render_settings_page()
 	$role_names = wp_roles()->get_names();
 ?>
 	<div class="wrap">
-		<h1><?php esc_html_e('Simple User Login Blocker', 'simple-user-login-blocker'); ?></h1>
-		<p><?php esc_html_e('Check a user to disable their login. Unchecked users can log in normally.', 'simple-user-login-blocker'); ?></p>
+		<h1><?php esc_html_e('Eclairman\'s User Login Blocker', 'eclairman-user-login-blocker'); ?></h1>
+		<p><?php esc_html_e('Check a user to disable their login. Unchecked users can log in normally.', 'eclairman-user-login-blocker'); ?></p>
 
 		<?php if ($notice) : ?>
 			<div class="notice notice-success is-dismissible">
@@ -210,14 +210,14 @@ function dnal_render_settings_page()
 
 		<p>
 			<strong><?php echo esc_html(count($blocked_ids)); ?></strong>
-			<?php esc_html_e('user(s) currently blocked.', 'simple-user-login-blocker'); ?>
+			<?php esc_html_e('user(s) currently blocked.', 'eclairman-user-login-blocker'); ?>
 		</p>
 
 		<form method="get" class="dnal-search-form">
-			<input type="hidden" name="page" value="simple-user-login-blocker" />
-			<label class="screen-reader-text" for="dnal-search-input"><?php esc_html_e('Search users', 'simple-user-login-blocker'); ?></label>
-			<input type="search" id="dnal-search-input" name="dnal_search" value="<?php echo esc_attr($search); ?>" placeholder="<?php esc_attr_e('Search name, login or email', 'simple-user-login-blocker'); ?>" />
-			<?php submit_button(__('Search', 'simple-user-login-blocker'), '', '', false); ?>
+			<input type="hidden" name="page" value="eclairman-user-login-blocker" />
+			<label class="screen-reader-text" for="dnal-search-input"><?php esc_html_e('Search users', 'eclairman-user-login-blocker'); ?></label>
+			<input type="search" id="dnal-search-input" name="dnal_search" value="<?php echo esc_attr($search); ?>" placeholder="<?php esc_attr_e('Search name, login or email', 'eclairman-user-login-blocker'); ?>" />
+			<?php submit_button(__('Search', 'eclairman-user-login-blocker'), '', '', false); ?>
 		</form>
 
 		<form method="post">
@@ -227,18 +227,18 @@ function dnal_render_settings_page()
 				<table class="widefat striped dnal-table">
 					<thead>
 						<tr>
-							<td class="check-column"><?php esc_html_e('Block', 'simple-user-login-blocker'); ?></td>
-							<th class="dnal-sort" data-type="num"><?php esc_html_e('ID', 'simple-user-login-blocker'); ?><span class="dnal-arrow"></span></th>
-							<th class="dnal-sort" data-type="str"><?php esc_html_e('Name', 'simple-user-login-blocker'); ?><span class="dnal-arrow"></span></th>
-							<th class="dnal-sort" data-type="str"><?php esc_html_e('Username', 'simple-user-login-blocker'); ?><span class="dnal-arrow"></span></th>
-							<th class="dnal-sort" data-type="str"><?php esc_html_e('Email', 'simple-user-login-blocker'); ?><span class="dnal-arrow"></span></th>
-							<th class="dnal-sort" data-type="str"><?php esc_html_e('Role', 'simple-user-login-blocker'); ?><span class="dnal-arrow"></span></th>
+							<td class="check-column"><?php esc_html_e('Block', 'eclairman-user-login-blocker'); ?></td>
+							<th class="dnal-sort" data-type="num"><?php esc_html_e('ID', 'eclairman-user-login-blocker'); ?><span class="dnal-arrow"></span></th>
+							<th class="dnal-sort" data-type="str"><?php esc_html_e('Name', 'eclairman-user-login-blocker'); ?><span class="dnal-arrow"></span></th>
+							<th class="dnal-sort" data-type="str"><?php esc_html_e('Username', 'eclairman-user-login-blocker'); ?><span class="dnal-arrow"></span></th>
+							<th class="dnal-sort" data-type="str"><?php esc_html_e('Email', 'eclairman-user-login-blocker'); ?><span class="dnal-arrow"></span></th>
+							<th class="dnal-sort" data-type="str"><?php esc_html_e('Role', 'eclairman-user-login-blocker'); ?><span class="dnal-arrow"></span></th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php if (empty($users)) : ?>
 							<tr>
-								<td colspan="6"><?php esc_html_e('No users found.', 'simple-user-login-blocker'); ?></td>
+								<td colspan="6"><?php esc_html_e('No users found.', 'eclairman-user-login-blocker'); ?></td>
 							</tr>
 						<?php else : ?>
 							<?php
@@ -280,7 +280,7 @@ function dnal_render_settings_page()
 			}
 			?>
 
-			<?php submit_button(__('Save Changes', 'simple-user-login-blocker'), 'primary', 'dnal_save'); ?>
+			<?php submit_button(__('Save Changes', 'eclairman-user-login-blocker'), 'primary', 'dnal_save'); ?>
 		</form>
 	</div>
 <?php

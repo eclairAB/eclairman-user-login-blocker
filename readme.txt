@@ -1,4 +1,4 @@
-=== Simple User Login Blocker ===
+=== Eclairman's User Login Blocker ===
 Contributors: eclairman
 Tags: login, users, access control, security, disable login
 Requires at least: 5.6
@@ -12,7 +12,7 @@ Disable login for selected users. Choose which accounts are blocked from a simpl
 
 == Description ==
 
-Simple User Login Blocker lets an administrator prevent chosen user accounts from logging in, while everyone else logs in normally.
+Eclairman's User Login Blocker lets an administrator prevent chosen user accounts from logging in, while everyone else logs in normally.
 
 Blocked users cannot authenticate, and if they already have an active session they are redirected away from the WordPress admin.
 
