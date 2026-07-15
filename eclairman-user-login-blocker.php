@@ -4,7 +4,7 @@
  * Plugin Name:       Eclairman's User Login Blocker
  * Plugin URI:        https://wordpress.org/plugins/eclairman-user-login-blocker/
  * Description:       Block login for selected users. Manage the blocked users from the "Eclairman's User Login Blocker" admin screen.
- * Version:           3.0.0
+ * Version:           1.0.0
  * Requires at least: 5.6
  * Requires PHP:      7.2
  * Author:            eclairman
@@ -18,7 +18,7 @@
 
 defined('ABSPATH') || exit;
 
-define('DNAL_VERSION', '3.0.0');
+define('DNAL_VERSION', '1.0.0');
 define('DNAL_OPTION_KEY', 'dnal_blocked_user_ids');
 
 /**

@@ -4,7 +4,7 @@ Tags: login, users, access control, security, disable login
 Requires at least: 5.6
 Tested up to: 7.0
 Requires PHP: 7.2
-Stable tag: 3.0.0
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,7 +50,7 @@ You can, but be careful not to lock yourself out. A blocked administrator cannot
 
 == Changelog ==
 
-= 3.0.0 =
+= 1.0.0 =
 * First public release.
 * Block login for individually selected users.
 * Searchable and sortable user management table with sticky header.
@@ -60,5 +60,5 @@ You can, but be careful not to lock yourself out. A blocked administrator cannot
 
 == Upgrade Notice ==
 
-= 3.0.0 =
+= 1.0.0 =
 First public release.
